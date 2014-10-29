@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MatApp</string>
+
+    <string name="new_matrix_title">Set Dimensions</string>
+    <string name="create">Create</string>
+    <string name="cancel">Cancel</string>
+
+</resources>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MatrixView">
+        <attr name="matrixViewStyle" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="ExpressionView">
+        <attr name="expressionViewStyle" format="reference"/>
+        <attr name="expressionChildLayoutStyle" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="MatrixField">
+        <attr name="matrixFieldStyle" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="OperatorView">
+        <attr name="operatorViewStyle" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="MyNumberPicker">
+        <attr name="minValue" format="integer"/>
+        <attr name="maxValue" format="integer"/>
+    </declare-styleable>
+
+</resources>

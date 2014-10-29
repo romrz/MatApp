@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light">
+        <item name="matrixFieldStyle">@style/MatrixFieldStyle</item>
+        <item name="matrixViewStyle">@style/MatrixViewStyle</item>
+        <item name="expressionViewStyle">@style/ExpressionViewStyle</item>
+        <item name="expressionChildLayoutStyle">@style/ExpressionChildLayoutStyle</item>
+        <item name="operatorViewStyle">@style/OperatorViewStyle</item>
+        <item name="android:inputType">number</item>
+    </style>
+
+</resources>
