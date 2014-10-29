@@ -1,0 +1,68 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".WorkSpace"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:id="@+id/MainLayout">
+
+
+    <ScrollView
+        android:id="@+id/scroll_container"
+        style="@style/ScrollContainer">
+
+        <LinearLayout
+            android:id="@+id/container"
+            style="@style/Container">
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/menu"
+        style="@style/MenuStyle">
+
+        <Button android:id="@+id/menu_btn_sum"
+            style="@style/MenuButton"
+            android:text="+"
+            android:onClick="onAppMenuItemSelected"/>
+
+        <Button android:id="@+id/menu_btn_subtraction"
+            style="@style/MenuButton"
+            android:text="-"
+            android:onClick="onAppMenuItemSelected"/>
+
+        <Button android:id="@+id/menu_btn_multiplication"
+            style="@style/MenuButton"
+            android:text="*"
+            android:onClick="onAppMenuItemSelected"/>
+
+        <Button android:id="@+id/menu_btn_inverse"
+            style="@style/MenuButton"
+            android:text="-1"
+            android:onClick="onAppMenuItemSelected"/>
+
+        <Button android:id="@+id/menu_btn_lbracket"
+            style="@style/MenuButton"
+            android:text="("
+            android:onClick="onAppMenuItemSelected"/>
+
+        <Button android:id="@+id/menu_btn_rbracket"
+            style="@style/MenuButton"
+            android:text=")"
+            android:onClick="onAppMenuItemSelected"/>
+
+        <Button android:id="@+id/menu_btn_equal"
+            style="@style/MenuButton"
+            android:text="="
+            android:onClick="onAppMenuItemSelected"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+
