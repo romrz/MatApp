@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.rom.matapp.mat.Matrix;
 import com.rom.matapp.mat.WorkSpace;
@@ -23,6 +24,8 @@ import com.rom.matapp.ui.MatrixView;
 import com.rom.matapp.ui.NewMatrixDialogFragment;
 import com.rom.matapp.ui.OperatorView;
 import com.rom.matapp.utils.MyUtils;
+
+import java.util.concurrent.locks.ReentrantLock;
 
 
 public class WorkSpaceActivity extends Activity {
@@ -88,24 +91,51 @@ public class WorkSpaceActivity extends Activity {
     public void resolveExpression() {
         if(!isExpressionFocused() || getFocusedExpression().isResult()) return;
 
-        final int id = MyUtils.generateViewId();
+        String string = getFocusedExpression().toString();
 
-        Matrix r = mWorkspace.resolveExpression(getFocusedExpression().toString());
-        MatrixView m = new MatrixView(this, r.getRows(), r.getCols());
+        Matrix r = mWorkspace.resolveExpression(string);
 
-        r.setId(id);
-        m.setId(id);
+        int expStatus = mWorkspace.getStatus();
 
-        m.setMat(r);
-        mWorkspace.addMatrix(r);
+        if(expStatus == WorkSpace.RESULT_OK) {
 
-        if(getFocusedExpression().isParent())
-            updateResultExpression(m);
-        else
-            addResultExpression(m);
+            final int id = MyUtils.generateViewId();
 
-        m = null;
-        r = null;
+            MatrixView m = new MatrixView(this, r.getRows(), r.getCols());
+
+            r.setId(id);
+            m.setId(id);
+
+            m.setMat(r);
+            mWorkspace.addMatrix(r);
+
+            if (getFocusedExpression().isParent())
+                updateResultExpression(m);
+            else
+                addResultExpression(m);
+
+            m = null;
+            r = null;
+        }
+        else {
+
+            int textId;
+
+            switch(expStatus) {
+                case WorkSpace.RESULT_ERROR_DIM:
+                    textId = R.string.error_wrong_dimen;
+                    break;
+                case WorkSpace.RESULT_ERROR_SING_MAT:
+                    textId = R.string.error_sing_mat;
+                    break;
+                default:
+                    textId = R.string.error_bad_exp;
+            }
+
+            Toast.makeText(getApplicationContext(), textId, Toast.LENGTH_SHORT).show();
+
+        }
+
     }
 
     public void addResultExpression(MatrixView m) {

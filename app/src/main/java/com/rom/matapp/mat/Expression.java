@@ -13,6 +13,7 @@ public class Expression {
     // The string representing this expression
     private String mExpression;
 
+    // State of the expression
     private int mStatus;
 
     public Expression(WorkSpace ws, String expression) {
@@ -140,6 +141,11 @@ public class Expression {
      * @return The result matrix or null if there was any error
      */
     private Matrix evaluate(String expression) {
+
+        if(expression == null || expression.equals("")) {
+            mStatus = WorkSpace.RESULT_ERROR_BAD_EXP;
+            return null;
+        }
 
         Deque<Matrix> tempStack = new ArrayDeque<Matrix>();
         String tokens[] = expression.split(" ");

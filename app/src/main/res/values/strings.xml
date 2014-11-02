@@ -7,4 +7,8 @@
     <string name="create">Create</string>
     <string name="cancel">Cancel</string>
 
+    <string name="error_bad_exp">Expresion mal formulada.</string>
+    <string name="error_sing_mat">Matriz singular. No se puede resolver la expresion.</string>
+    <string name="error_wrong_dimen">Las dimensiones de las matrices no coinciden.</string>
+
 </resources>

@@ -8,11 +8,11 @@ import java.util.LinkedList;
  */
 public class WorkSpace {
 
-    public static int RESULT_OK = 1;
-    public static int RESULT_ERROR_DIM = 2;
-    public static int RESULT_ERROR_SING_MAT = 3;
-    public static int RESULT_ERROR_MAT_NFOUND = 4;
-    public static int RESULT_ERROR_BAD_EXP = 5;
+    public static final int RESULT_OK = 1;
+    public static final int RESULT_ERROR_DIM = 2;
+    public static final int RESULT_ERROR_SING_MAT = 3;
+    public static final int RESULT_ERROR_MAT_NFOUND = 4;
+    public static final int RESULT_ERROR_BAD_EXP = 5;
 
     // This is where all the matrices are stored
     private List<Matrix> mMatrices;
