@@ -51,7 +51,6 @@ public class MatrixView extends GridLayout {
 
         mGestureDetector = new GestureDetector(getContext(), new MyGestureListener());
         setMatrixFields(rows, cols); // Creates the MatrixFields
-        setName("Mat");
     }
 
     /**
@@ -148,8 +147,16 @@ public class MatrixView extends GridLayout {
      *
      * @param name
      */
-    void setName(String name) {
-        ((TextView) getChildAt(getChildCount() - 1)).setText(name);
+    public void setName(String name) {
+        mMatrix.setName(name);
+    }
+
+    /**
+     * Gets the name of this matrix
+     *
+     */
+    public String getName() {
+        return mMatrix.getName();
     }
 
     /**
@@ -259,6 +266,8 @@ public class MatrixView extends GridLayout {
      */
     public void setContracted(boolean contract) {
         if(contract == contracted) return; // Do nothing if is in the same state
+
+        ((TextView) getChildAt(getChildCount() - 1)).setText(mMatrix.getName());
 
         // Shows or hides the MatrixFields
         int c = getChildCount() - 1;
@@ -433,10 +442,17 @@ public class MatrixView extends GridLayout {
                 case R.id.paste_matrix:
                 case R.id.toggle_enable_matrix:
                     return true;
+                case R.id.change_matrix_name:
+
+                    new ChangeMatrixNameDialogFragment().show(getWorkSpace().getFragmentManager(), "Change name");
+
+                    return true;
                 case R.id.delete_matrix:
+
                     //getWorkSpace().deleteMatrix(getId());
                     ((ExpressionView) getParent().getParent()).deleteChild(getId());
                     getWorkSpace().getActionMode().finish(); // Close the Action Mode
+
                     return true;
                 default:
                     return false;

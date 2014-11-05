@@ -3,13 +3,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/copy_matrix"
-        android:title="Copy Matrix"
+        android:id="@+id/change_matrix_name"
+        android:title="Change Name"
         android:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/delete_matrix"
         android:title="Delete Matrix"
+        android:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/copy_matrix"
+        android:title="Copy Matrix"
         android:showAsAction="ifRoom" />
 
     <item

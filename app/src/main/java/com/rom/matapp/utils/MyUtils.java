@@ -12,6 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class MyUtils {
     private static final AtomicInteger sNextGeneratedId = new AtomicInteger(1);
+    private static final AtomicInteger sNextGeneratedName = new AtomicInteger(1);
 
     /**
      * Generate a value suitable for use in setId(int)}.
@@ -44,6 +45,20 @@ public class MyUtils {
 
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+
+    }
+
+    public static String generateMatrixName() {
+
+        for (;;) {
+            final int result = sNextGeneratedName.get();
+            // aapt-generated IDs have the high byte nonzero; clamp to the range under that.
+            int newValue = result + 1;
+            if (newValue > 0x00FFFFFF) newValue = 1; // Roll over to 1, not 0.
+            if (sNextGeneratedName.compareAndSet(result, newValue)) {
+                return "M" + result;
+            }
+        }
 
     }
 }

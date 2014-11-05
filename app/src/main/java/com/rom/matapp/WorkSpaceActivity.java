@@ -1,6 +1,7 @@
 package com.rom.matapp;
 
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -103,6 +104,8 @@ public class WorkSpaceActivity extends Activity {
 
             MatrixView m = new MatrixView(this, r.getRows(), r.getCols());
 
+            r.setName(MyUtils.generateMatrixName());
+
             r.setId(id);
             m.setId(id);
 
@@ -192,7 +195,7 @@ public class WorkSpaceActivity extends Activity {
      * @param rows
      * @param cols
      */
-    public void addMatrix(int rows, int cols) {
+    public void addMatrix(int rows, int cols, String name) {
         if(!isExpressionFocused() || rows < 1 || cols < 1 || getFocusedExpression().isResult())
             return;
 
@@ -200,6 +203,8 @@ public class WorkSpaceActivity extends Activity {
 
         MatrixView matrixView = new MatrixView(this, rows, cols);
         Matrix matrix = new Matrix(rows, cols);
+
+        matrix.setName(name);
 
         matrixView.setId(id);
         matrix.setId(id);
@@ -373,7 +378,7 @@ public class WorkSpaceActivity extends Activity {
                 break;
             case MI_NEW_MAT:
                 if(isExpressionFocused())
-                    new NewMatrixDialogFragment().show(getFragmentManager(), "new matrix");
+                    new NewMatrixDialogFragment().show(getFragmentManager(), "New matrix");
 
                 break;
         }

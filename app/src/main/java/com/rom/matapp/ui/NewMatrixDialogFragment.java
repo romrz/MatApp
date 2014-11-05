@@ -6,9 +6,12 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.EditText;
 
 import com.rom.matapp.R;
 import com.rom.matapp.WorkSpaceActivity;
+import com.rom.matapp.utils.MyUtils;
 
 /**
  * Created by rom on 30/08/14.
@@ -22,10 +25,13 @@ public class NewMatrixDialogFragment extends DialogFragment {
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        builder.setView(inflater.inflate(R.layout.new_matrix_dialog_layout, null));
+        View view = inflater.inflate(R.layout.new_matrix_dialog_layout, null);
 
-        builder.setTitle(R.string.new_matrix_title)
-            .setPositiveButton(R.string.create, new DialogInterface.OnClickListener() {
+        ((EditText) view.findViewById(R.id.matrix_name)).setHint(MyUtils.generateMatrixName());
+
+        builder.setView(view);
+
+        builder.setPositiveButton(R.string.create, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int id) {
 
@@ -34,7 +40,13 @@ public class NewMatrixDialogFragment extends DialogFragment {
                     int rows = ((MyNumberPicker) dialog.findViewById(R.id.rows)).getValue();
                     int cols = ((MyNumberPicker) dialog.findViewById(R.id.cols)).getValue();
 
-                    ((WorkSpaceActivity) getActivity()).addMatrix(rows, cols);
+                    EditText nameEditText = (EditText) dialog.findViewById(R.id.matrix_name);
+
+                    String name = nameEditText.getText().toString();
+
+                    name = name.equals("") ? nameEditText.getHint().toString() : name;
+
+                    ((WorkSpaceActivity) getActivity()).addMatrix(rows, cols, name);
 
                 }
             })
@@ -46,6 +58,7 @@ public class NewMatrixDialogFragment extends DialogFragment {
             });
 
         return builder.create();
+
     }
 
 }
